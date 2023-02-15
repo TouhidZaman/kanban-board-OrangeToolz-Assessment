@@ -34,10 +34,14 @@ const tasksSlice = createSlice({
             state.tasksList.find(task => task.id ===taskId).status = status;
             state.isDragging=false;
             setItemsByKey("tasksList", state.tasksList) // updating local storage
-        }
+        },
+        removeTask: (state, {payload} ) => {
+            state.tasksList = state.tasksList.filter(task => task.id !== payload)
+            setItemsByKey("tasksList", state.tasksList) // updating local storage
+        },
     }
 })
 
-export const { addTask, toggleIsDragging, updateTaskStatus } = tasksSlice.actions
+export const { addTask, toggleIsDragging, updateTaskStatus, removeTask } = tasksSlice.actions
 
 export default tasksSlice.reducer;

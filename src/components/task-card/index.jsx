@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { toggleIsDragging } from "features/tasks/tasksSlice";
+import { removeTask, toggleIsDragging } from "features/tasks/tasksSlice";
 
 import classes from "./task-card.module.css";
 
@@ -19,6 +19,7 @@ const TaskCard = ({ task }) => {
       onDragStart={handleDragStart}
       onDragEnd={() => dispatch(toggleIsDragging(false))}
     >
+      <span onClick={() => dispatch(removeTask(task.id))}>x</span>
       {task.title}
     </div>
   );

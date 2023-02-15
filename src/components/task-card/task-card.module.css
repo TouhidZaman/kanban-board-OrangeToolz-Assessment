@@ -7,4 +7,10 @@
     text-align: center;
     border: 1px solid black;
     cursor: pointer;
+    position: relative;
+}
+.taskCard span {
+    position: absolute;
+    right: 4px;
+    top: -5px;
 }
