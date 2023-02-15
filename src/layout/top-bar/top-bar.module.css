@@ -1,0 +1,9 @@
+.topBar {
+    text-align: center;
+}
+.topBar h3 {
+    font-size: 40px;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-weight: 700;
+    margin: 25px 0px;
+}

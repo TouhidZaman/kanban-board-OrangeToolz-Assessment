@@ -1,0 +1,10 @@
+.taskCard {
+    padding: 10px;
+    width: 90%;
+    background-color: #DDDDDD;
+    box-sizing: border-box;
+    margin: 10px auto;
+    text-align: center;
+    border: 1px solid black;
+    cursor: pointer;
+}

@@ -1,0 +1,15 @@
+.taskContainer {
+    height: 67vh;
+    border: 1px solid black;
+}
+
+.taskContainer > .status {
+    margin: 0;
+    padding: 10px;
+    height: 30px;
+    background-color:#FF6347;
+    color: black;
+    font-weight: 700;
+    text-align: center;
+    text-transform: capitalize;
+}
