@@ -1,6 +1,11 @@
 .taskContainer {
     height: 67vh;
     border: 1px solid black;
+    overflow: hidden;
+}
+.dragging {
+    border: 2px dotted black;
+    background:lightgray;
 }
 
 .taskContainer > .status {
