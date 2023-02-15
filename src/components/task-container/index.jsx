@@ -10,7 +10,9 @@ const TaskContainer = ({ status }) => {
   return (
     <div className={classes.taskContainer}>
       <h3 className={classes.status}>{status}</h3>
-      {tasksList.map((task) => task.status === status && <TaskCard task={task} />)}
+      {tasksList.map(
+        (task) => task.status === status && <TaskCard key={task.id} task={task} />
+      )}
     </div>
   );
 };

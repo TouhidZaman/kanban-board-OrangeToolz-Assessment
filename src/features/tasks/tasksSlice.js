@@ -1,20 +1,33 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { getItemsByKey, setItemsByKey } from "utils/localDB";
 
 const initialState = {
     taskStatus : ["todo", "in-progress", "done"],
-    tasksList: [
-        {id: 1, title: "My Task 1", status: "done"},
-        {id: 2, title: "My Task 3", status: "in-progress"},
-        {id: 3, title: "My Task 2", status: "todo"},
-        {id: 4, title: "My Task 4", status: "todo"},
-    ]
+    tasksList: getItemsByKey("tasksList")
+    //Example Task List Items
+    // [
+    //     {id: 1, title: "My Task 1", status: "done"},
+    //     {id: 2, title: "My Task 3", status: "in-progress"},
+    //     {id: 3, title: "My Task 2", status: "todo"},
+    // ]
 }
 
 const tasksSlice = createSlice({
     name: "tasks",
     initialState,
-    reducers: {}
+    reducers: {
+        addTask: (state, {payload} ) => {
+            const newTask = {
+                id: Date.now(),
+                title: payload,
+                status: "todo"
+            }
+            state.tasksList.push(newTask); // adding new task to the list
+            setItemsByKey("tasksList", state.tasksList) // updating local storage
+        }
+    }
 })
 
+export const { addTask } = tasksSlice.actions
 
 export default tasksSlice.reducer;
