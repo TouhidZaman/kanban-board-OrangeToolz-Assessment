@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import classes from "./task-container.module.css";
 import TaskCard from "components/task-card";
-import { updateTaskStatus } from "features/tasks/tasksSlice";
+import { updateTaskStatus } from "redux/actions/tasksActions";
 
 const TaskContainer = ({ status }) => {
   const { tasksList, isDragging } = useSelector((state) => state.tasks);
