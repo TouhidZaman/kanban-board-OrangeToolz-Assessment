@@ -30,8 +30,19 @@ const tasksSlice = createSlice({
             state.isDragging=payload
         },
         updateTaskStatus: (state, {payload}) => {
-            const {taskId, status} = payload
-            state.tasksList.find(task => task.id ===taskId).status = status;
+            const {taskId, status, position} = payload;
+            state.tasksList.find(task => task.id ===taskId).status = status; //updating task status
+
+            //optional position adjustments
+            const taskIds = state.tasksList.map(task => task.id);
+            const currentIndex = taskIds.indexOf(taskId);
+            const currentItem = state.tasksList.splice(currentIndex, 1)[0]; //removing item from current position
+            if(position !== null) {
+                state.tasksList.splice(position, 0, currentItem) // adding item to new position
+            } else {
+                state.tasksList.push(currentItem) // adding item to the end of the list as position not defined
+            }
+
             state.isDragging=false;
             setItemsByKey("tasksList", state.tasksList) // updating local storage
         },

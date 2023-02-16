@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import classes from "./task-container.module.css";
@@ -7,15 +7,16 @@ import { updateTaskStatus } from "features/tasks/tasksSlice";
 
 const TaskContainer = ({ status }) => {
   const { tasksList, isDragging } = useSelector((state) => state.tasks);
+  const dragOverItem = useRef(null); // To store current item insert position
   const dispatch = useDispatch();
 
-  const handleDragOver = (e) => {
-    e.preventDefault(); // Need to stop default behavior to enable drop functionalities
-  };
+  // Drag and Drop will not work without this (Preventing default behavior).
+  const handleDragOver = (e) => e.preventDefault();
+
   const handleDrop = (e) => {
     e.preventDefault();
     const taskId = +e.dataTransfer.getData("text");
-    dispatch(updateTaskStatus({ taskId, status }));
+    dispatch(updateTaskStatus({ taskId, status, position: dragOverItem.current }));
   };
 
   return (
@@ -26,7 +27,10 @@ const TaskContainer = ({ status }) => {
     >
       <h3 className={classes.status}>{status}</h3>
       {tasksList.map(
-        (task) => task.status === status && <TaskCard key={task.id} task={task} />
+        (task, index) =>
+          task.status === status && (
+            <TaskCard key={task.id} task={task} index={index} ref={dragOverItem} />
+          )
       )}
     </div>
   );

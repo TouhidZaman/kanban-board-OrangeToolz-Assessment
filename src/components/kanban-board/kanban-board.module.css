@@ -32,3 +32,26 @@
     grid-template-columns: repeat(3, 250px);
     justify-content: center;
 }
+
+@media screen and (max-width: 800px) {
+    .containers {
+          padding: 0px 30px;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+    }
+    .addTask {
+        flex-direction: column;
+        align-items: center;
+    }
+    .addTask > input,
+    .addTask > button {
+        font-size: 14px;
+    }
+    .addTask > input {
+        height: 36px;
+        width: 250px;
+    }
+    .addTask > button {
+        margin: 20px 0px 0px;
+    }
+}
