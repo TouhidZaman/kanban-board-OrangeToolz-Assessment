@@ -1,7 +1,7 @@
 import React, { forwardRef } from "react";
 import { useDispatch } from "react-redux";
-import { removeTask, toggleIsDragging } from "features/tasks/tasksSlice";
 
+import { removeFromTaskList, setDraggingStatus } from "redux/actions/tasksActions";
 import classes from "./task-card.module.css";
 
 const TaskCard = forwardRef(({ task, index }, ref) => {
@@ -9,14 +9,11 @@ const TaskCard = forwardRef(({ task, index }, ref) => {
 
   const handleDragStart = (e) => {
     e.dataTransfer.setData("text", task.id);
-    dispatch(toggleIsDragging(true));
+    dispatch(setDraggingStatus(true));
   };
 
   //Tracking item insert position
-  const handleDragEnter = (position) => {
-    ref.current = position;
-    console.log(ref.current);
-  };
+  const handleDragEnter = (position) => (ref.current = position);
 
   //Resetting item insert position
   const handleDragLeave = () => (ref.current = null);
@@ -28,9 +25,9 @@ const TaskCard = forwardRef(({ task, index }, ref) => {
       onDragEnter={() => handleDragEnter(index)}
       onDragLeave={handleDragLeave}
       onDragStart={handleDragStart}
-      onDragEnd={() => dispatch(toggleIsDragging(false))}
+      onDragEnd={() => dispatch(setDraggingStatus(false))}
     >
-      <span onClick={() => dispatch(removeTask(task.id))}>X</span>
+      <span onClick={() => dispatch(removeFromTaskList(task.id))}>X</span>
       {task.title}
     </div>
   );
