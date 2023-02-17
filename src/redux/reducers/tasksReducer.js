@@ -21,12 +21,7 @@ const initialState = {
 export const tasksReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TASK:
-      const newTask = {
-        id: Date.now(),
-        title: action.payload,
-        status: "todo",
-      };
-      const newTasksList = [...state.tasksList, newTask];
+      const newTasksList = [...state.tasksList, action.payload];
       setItemsByKey("tasksList", newTasksList);
       return {
         ...state,

@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import TaskContainer from "components/task-container";
-import { addToTaskList } from "redux/actions/tasksActions";
 import classes from "./kanban-board.module.css";
+import prepareTask from "redux/thunks/prepareTask";
 
 const KanbanBoard = () => {
   const { taskStatus } = useSelector((state) => state.tasks);
@@ -11,7 +11,7 @@ const KanbanBoard = () => {
   const dispatch = useDispatch();
 
   const handleTaskAdd = () => {
-    dispatch(addToTaskList(task));
+    dispatch(prepareTask(task));
     setTask("");
   };
 
