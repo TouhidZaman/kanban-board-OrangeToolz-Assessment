@@ -6,12 +6,12 @@ Visit Kanban Board - Task Manager - live website: [https://dnd-task-manager.web.
 
 ## Project Description
 
-Kanban Board - Task Manager is a simple task manager tool created using the redux, redux-thunk middleware and default drag and drop attributes of HTML element, where you can add a new task, and change the task status by using drag and drop. additionally, you can remove a task using the "x" button and you can change the order of the task using drag and drop. also, it is possible to place a task in between two existing task
+Kanban Board - Task Manager is a simple task manager tool created using the React, redux, redux-thunk middleware and default drag and drop attributes of HTML element, where you can add a new task, and change the task status by using drag and drop (note that: you are only allowed to move the task forward). additionally, you can remove a task using the "x" button and you can rearrange the order of the task using drag and drop. also, it is possible to place a task in between two existing task
 
 - Frontend Technologies used in this project
   - react@18
   - redux
-  - redux-thunk (Middleware for handing tasks with redux store before dispatching)
+  - redux-thunk (Middleware for handing tasks with redux store before dispatching actions)
   - CSS-Module
   - custom-drag-and_drop (No Third party Libraries/packages used)
   - localStorage

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-hot-toast";
 
 import TaskContainer from "components/task-container";
 import classes from "./kanban-board.module.css";
@@ -7,12 +8,16 @@ import prepareTask from "redux/thunks/prepareTask";
 
 const KanbanBoard = () => {
   const { taskStatus } = useSelector((state) => state.tasks);
-  const [task, setTask] = useState("");
+  const [taskTitle, setTaskTitle] = useState("");
   const dispatch = useDispatch();
 
   const handleTaskAdd = () => {
-    dispatch(prepareTask(task));
-    setTask("");
+    if (taskTitle) {
+      dispatch(prepareTask(taskTitle));
+      setTaskTitle("");
+    } else {
+      toast.error("Please input task name first", { id: "name" });
+    }
   };
 
   const handleEnterKeyDown = (key) => {
@@ -26,8 +31,8 @@ const KanbanBoard = () => {
       <div className={classes.addTask}>
         <input
           type="text"
-          value={task}
-          onChange={(e) => setTask(e.target.value)}
+          value={taskTitle}
+          onChange={(e) => setTaskTitle(e.target.value)}
           onKeyDown={(e) => handleEnterKeyDown(e.key)}
           placeholder="Write your task..."
         />
