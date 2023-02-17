@@ -18,7 +18,7 @@ const prepareTask = (taskTitle) => {
       };
       dispatch(addToTaskList(newTask));
     } else {
-      toast.error("Task Already exist");
+      toast.error("Task Already exist", { id: "exist" });
     }
   };
 };

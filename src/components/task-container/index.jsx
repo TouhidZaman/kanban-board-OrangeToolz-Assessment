@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import classes from "./task-container.module.css";
 import TaskCard from "components/task-card";
-import { updateTaskStatus } from "redux/actions/tasksActions";
+import verifyTaskStatusUpdate from "redux/thunks/verifyTaskStatusUpdate";
 
 const TaskContainer = ({ status }) => {
   const { tasksList, isDragging } = useSelector((state) => state.tasks);
@@ -16,7 +16,13 @@ const TaskContainer = ({ status }) => {
   const handleDrop = (e) => {
     e.preventDefault();
     const taskId = +e.dataTransfer.getData("text");
-    dispatch(updateTaskStatus({ taskId, status, position: dragOverItem.current }));
+    dispatch(
+      verifyTaskStatusUpdate({
+        taskId,
+        status,
+        position: dragOverItem.current,
+      })
+    );
   };
 
   return (
